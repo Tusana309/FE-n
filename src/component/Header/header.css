@@ -1,0 +1,21 @@
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(3, 18, 26, 0.5);
+  z-index: 99;
+}
+.Modal {
+  position: absolute;
+  z-index: 100;
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px;
+}
+.slider {
+  padding-top: 40%;
+  background: url('https://ik.imagekit.io/tvlk/image/imageResource/2023/09/27/1695776209619-17a750c3f514f7a8cccde2d0976c902a.png')
+    top center / cover no-repeat;
+}

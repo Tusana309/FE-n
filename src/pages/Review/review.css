@@ -1,0 +1,11 @@
+.review{
+  background: url(https://www.ozgo.vn/wp-content/uploads/2019/06/b%E1%BA%A3o-hi%E1%BB%83m-du-l%E1%BB%8Bch.jpg) no-repeat center fixed;
+  background-size: cover;
+  height: 80vh;
+}
+.shadow-mh {
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+}
+.shadow-t-mh {
+  box-shadow: 0px 0px 3px 0 rgba(0, 0, 0, 0.15);
+}
