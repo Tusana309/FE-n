@@ -57,6 +57,7 @@ function CarItem({ _, index }: { _: any; index: number }) {
             Mã chuyển khoản: <p className='font-semibold inline'>{_.code}</p>
           </p>
           <p>Tự lái: {_.auto_drive ? 'Tự lái xe' : 'Có tài xế'}</p>
+          <p>Loại xe: {_.seater} chỗ</p>
           <p>Địa điểm chi tiết: {_.location} </p>
           <p>Ngày đặt vé xe: {formatDate(_.time_start)} </p>
           <p>Trạng thái: {formatStatus(_.status)}</p>

@@ -254,7 +254,7 @@ function Hotel() {
           <li className='col-span-1 text-center'>Mã vé</li>
           <li className='col-span-1 text-center'>Tên người đặt</li>
           <li className='col-span-1 text-center'>Ngày đặt vé</li>
-          <li className='col-span-1 text-center'>Giá tiền</li>
+          <li className='col-span-1 text-center'>Giá tiền/ Số phòng</li>
           <li className='col-span-1 text-center'>Mã thanh toán</li>
           <li className='col-span-1 text-center'>Ngày check-in</li>
           <li className='col-span-1 text-center'>Ngày check-out</li>
@@ -269,7 +269,7 @@ function Hotel() {
                   <li className='col-span-1 text-sm text-center font-medium'>{item._id.slice(0, 15)}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{item?.user?.full_name || item.name}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.date_pick)}</li>
-                  <li className='col-span-1 text-sm text-center font-medium'>{item.hotels?.price}</li>
+                  <li className='col-span-1 text-sm text-center font-medium'>{item.hotels?.price *item.numberRoom * ((Math.abs(item.timeBack - item.timeOrder) / (24 * 60 * 60 * 1000)) + 1)}/ {item.numberRoom}phòng</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{item.code}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.timeOrder)}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.timeBack)}</li>
@@ -314,7 +314,7 @@ function Hotel() {
                 <li className='col-span-1 text-sm text-center font-medium'>{item._id.slice(0, 15)}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{item?.user?.full_name || item.name}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.date_pick)}</li>
-                <li className='col-span-1 text-sm text-center font-medium'>{item.hotels?.price}</li>
+                <li className='col-span-1 text-sm text-center font-medium'>{item.hotels?.price *item.numberRoom * ((Math.abs(item.timeBack - item.timeOrder) / (24 * 60 * 60 * 1000)) + 1)}/ {item.numberRoom}phòng</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{item.code}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.timeOrder)}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.timeBack)}</li>

@@ -211,16 +211,16 @@ const useRouterElements = () => {
           <Message text='ping-abc' />
         </>
       )
-    },
-    {
-      path: 'chat',
-      element: (
-        <>
-          <Chat />
-          <Message text='ping-abc' />
-        </>
-      )
     }
+    // ,{
+    //   path: 'chat',
+    //   element: (
+    //     <>
+    //       <Chat />
+    //       <Message text='ping-abc' />
+    //     </>
+    //   )
+    // }
   ])
   return elements
 }

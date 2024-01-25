@@ -282,7 +282,7 @@ function Car() {
           <li className='col-span-1 text-center'>Ngày đặt vé</li>
           <li className='col-span-1 text-center'>Giá tiền</li>
           <li className='col-span-1 text-center'>Mã thanh toán</li>
-          <li className='col-span-1 text-center'>Ngày nhận xe</li>
+          <li className='col-span-1 text-center'>Ngày nhận xe/ Loại xe</li>
           <li className='col-span-1 text-center'>Địa điểm</li>
           <li className='col-span-1 text-center'>Trạng thái vé</li>
           <li className='col-span-1 text-center'>Hành động</li>
@@ -297,7 +297,7 @@ function Car() {
                   <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.date_pick)}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{item?.cars?.price}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{item.code}</li>
-                  <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.time_start)}</li>
+                  <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.time_start)} / {item.seater}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.timeBack)}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{formatStatus(item.status)}</li>
                   <li className='col-span-1'>
@@ -342,7 +342,7 @@ function Car() {
                 <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.date_pick)}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{item?.cars?.price}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{item.code}</li>
-                <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.time_start)}</li>
+                <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.time_start)} / {item.seater} chỗ</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{item.location}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{formatStatus(item.status)}</li>
                 <li className='col-span-1'>

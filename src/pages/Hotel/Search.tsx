@@ -25,8 +25,10 @@ export default function Search() {
   const location = useLocation()
   const { profile, setMessage, setId } = useContext(AppContext)
   function handlePickRoom(price: string, id: string) {
-    navigate('/hotel/booking', { state: { price, id } })
+    navigate('/hotel/booking', { state: { price, id, numberRoom: location.state.numberRoom } })
   }
+  console.log(location.state.numberRoom);
+  
   function handleChat(id: string) {
     if (id !== profile._id) {
       setMessage(false)
@@ -68,7 +70,7 @@ export default function Search() {
             <div className='flex gap-2 items-center mt-4 bg-[#fff] px-4 py-2 rounded-lg shadow-md mb-4'>
               {/* <p className='ml-2 text-[#000] font-semibold w-full'>Tìm thấy 1685 cơ sở lưu trú tại Đà Nẵng</p> */}
             </div>
-            {location.state.map((item: any, index: any) => (
+            {location.state.data.map((item: any, index: any) => (
               <div className='grid mb-4 grid-cols-4 gap-3 shadow-md rounded-md overflow-hidden' key={index}>
                 <div className='col-span-1 rounded-md flex flex-col gap-1'>
                   <div className='rounded-md w-full h-full'>

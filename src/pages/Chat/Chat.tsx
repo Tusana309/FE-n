@@ -31,6 +31,9 @@ export default function Chat({
       const { payload } = data
       setMessage(payload)
       setConversations((conversations: any) => [...conversations, payload])
+      // setNone(false)
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      // handleFetchMessage();
     })
     return () => {
       socket.disconnect()
@@ -60,7 +63,16 @@ export default function Chat({
     const mem = await http.get(`/conversations`)
     setMembers(mem.data.result)
   }
-
+  useEffect(()=>{
+    console.log(members);
+    if(members?.length > 0){
+      setName(members[0]?.result?.full_name)
+    }
+  },[members])
+  useEffect(() => {
+    // Cuộn xuống dưới cùng khi conversations hoặc none thay đổi
+    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, [conversations, none]);
   const send = (e: any) => {
     e.preventDefault()
     setValue('')
@@ -72,8 +84,8 @@ export default function Chat({
     socket.emit('send_message', {
       payload: conversation
     })
-    ref.current?.scrollIntoView({ behavior: 'smooth' })
-    ref.current?.scrollTo(0, ref.current?.scrollHeight + 100)
+    // ref.current?.scrollIntoView({ behavior: 'smooth' })
+    // ref.current?.scrollTo(0, ref.current?.scrollHeight + 200)
     setConversations((conversations: any) => [
       ...conversations,
       {
@@ -81,6 +93,7 @@ export default function Chat({
         _id: new Date().getTime()
       }
     ])
+    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
   }
   return (
     <div
@@ -94,7 +107,7 @@ export default function Chat({
               console.log(item)
               return (
                 <div
-                  onClick={() => setReceiver(item.userId)}
+                  onClick={() => (setReceiver(item.userId), setName(item.result.full_name))}
                   className='p-3 cursor-pointer hover:bg-blue-300 hover:text-white font-semibold border rounded-xl text-xs'
                   key={item?.userId}
                 >
@@ -120,7 +133,7 @@ export default function Chat({
           </svg>
         </div>
         <div className='border'>
-          <div className='chat px-3 pt-2 pb-2' ref={ref}>
+          <div className='chat px-3 pt-2 pb-2' ref={ref} >
             {conversations.map((conversation: any) => (
               <div key={conversation._id}>
                 <div className='message-container'>

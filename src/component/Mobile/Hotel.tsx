@@ -11,13 +11,14 @@ function Hotel() {
     timeOrder: 0,
     timeBack: 0
   })
+  const [numberRoom, setNumberRoom] = useState(0)
   const searchMutation = useMutation((key: string) => searchHotel(key))
   const navigate = useNavigate()
   function handleSearch() {
     searchMutation.mutate(keySearch, {
       onSuccess: (data) => {
         setTicket(date)
-        navigate('/hotel/search', { state: data.data.result })
+        navigate('/hotel/search', { state: { data: data.data.result, numberRoom } })
       }
     })
   }
@@ -69,10 +70,12 @@ function Hotel() {
           </div>
           <div className='flex flex-col'>
             <label htmlFor='' className='text-[#7a8286] text-base font-semibold'>
-              Khách và phòng
+              Số phòng
             </label>
             <input
               type='text'
+              // Thay vì truyền một chuỗi, hãy đảm bảo rằng giá trị là một số.
+              onChange={(e) => setNumberRoom(parseInt(e.target.value, 10))}
               className='outline-none font-normal pb-2 border-b-2 text-[#7a8286] text-base'
               placeholder='1 người lớn và 0 trẻ em'
             />

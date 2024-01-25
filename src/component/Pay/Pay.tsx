@@ -9,6 +9,8 @@ import { BookingBody, createBooking } from 'src/apis/booking.api'
 function Pay() {
   const location = useLocation()
   const { state } = location
+  console.log(state);
+  
   const { profile } = useContext(AppContext)
   const navigate = useNavigate()
   return (

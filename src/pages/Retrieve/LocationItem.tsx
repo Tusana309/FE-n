@@ -14,7 +14,7 @@ function LocationItem({ _, index }: { _: any; index: number }) {
       <div className='flex justify-between'>
         <h1 className='text-[#687176] text-[14px]'>Mã đặt chỗ Traveloka {_._id}</h1>
         <div className='flex items-center gap-2'>
-          <p className='text-[#03121a] font-bold'>{_.locations?.price} VND</p>
+          <p className='text-[#03121a] font-bold'>{_.locations?.price * _.amount_human} VND</p>
           <div className='cursor-pointer'onClick={() => handleChat(_.locations?.user_id)}>
             <svg
               xmlns='http://www.w3.org/2000/svg'

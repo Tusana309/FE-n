@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { BookingBody, createBooking } from 'src/apis/booking.api'
@@ -18,6 +18,11 @@ export default function Booking() {
     queryKey: ['', location.state.id],
     queryFn: () => getHotelId(location.state.id)
   })
+  console.log(parseFloat(location.state.numberRoom))
+
+  useEffect(() => {
+    console.log(result)
+  }, [result])
   const { setMessage } = useContext(AppContext)
   function handleChat(id: string) {
     if (id !== profile._id) {
@@ -32,12 +37,20 @@ export default function Booking() {
           date_pick: new Date().getTime(),
           name: name || profile?.full_name,
           timeOrder: ticket.timeOrder,
-          timeBack: ticket.timeBack
+          timeBack: ticket.timeBack,
+          numberRoom: parseFloat(location.state.numberRoom)
         },
         {
           onSuccess: (data) => {
             navigate('/pay', {
-              state: { price: location.state.price, code: data.data.result.code, result: result?.data.result }
+              state: {
+                price:
+                  location.state.price *
+                  parseFloat(location.state.numberRoom) *
+                  (Math.abs(ticket.timeBack - ticket.timeOrder) / (24 * 60 * 60 * 1000) + 1),
+                code: data.data.result.code,
+                result: result?.data.result
+              }
             })
           }
         }
@@ -98,6 +111,21 @@ export default function Booking() {
                     <p className='text-[#687176] text-[12px] font-bold'>VD: email@example.com</p>
                   </div>
                 </div>
+                <div className='flex flex-col w-1/2'>
+                  <label htmlFor='email' className='text-[#03121a] text-[14px] font-bold'>
+                    Số phòng: {location.state.numberRoom} phòng
+                  </label>
+                </div>
+                <div className='flex flex-col w-1/2'>
+                  <label htmlFor='email' className='text-[#03121a] text-[14px] font-bold'>
+                    Ngày nhận phòng: {formatDate(ticket.timeOrder)}
+                  </label>
+                </div>
+                <div className='flex flex-col w-1/2'>
+                  <label htmlFor='email' className='text-[#03121a] text-[14px] font-bold'>
+                    Ngày trả phòng: {formatDate(ticket.timeBack)}
+                  </label>
+                </div>
               </div>
             </div>
             <div className='mt-4'>
@@ -130,7 +158,12 @@ export default function Booking() {
                         strokeLinejoin='round'
                       ></path>
                     </svg>
-                    <p className='text-[#03121a] text-[16px] font-bold'>{location.state.price} VND</p>
+                    <p className='text-[#03121a] text-[16px] font-bold'>
+                      {location.state.price *
+                        parseFloat(location.state.numberRoom) *
+                        (Math.abs(ticket.timeBack - ticket.timeOrder) / (24 * 60 * 60 * 1000) + 1)}{' '}
+                      VND
+                    </p>
                   </div>
                 </div>
                 <div className='mt-4 flex gap-2 '>
@@ -146,10 +179,10 @@ export default function Booking() {
                   </p>
                 </div>
                 <div className='flex justify-between w-full mt-4'>
-                  <p className='text-[#03121a] text-[16px] font-semibold'>(1x) Superior Double (1 đêm)</p>
-                  <div className='flex items-center'>
-                    <p className='text-[#03121a] text-[16px] font-bold'>{location.state.price} VND</p>
-                  </div>
+                  {/* <p className='text-[#03121a] text-[16px] font-semibold'>(1x) Superior Double (1 đêm)</p> */}
+                  {/* <div className='flex items-center'> */}
+                  {/* <p className='text-[#03121a] text-[16px] font-bold'>{location.state.price} VND</p> */}
+                  {/* </div> */}
                 </div>
                 <div className='flex justify-between w-full mt-4'>
                   <p className='text-[#03121a] text-[16px] font-semibold'>Thuế và phí</p>
@@ -220,16 +253,16 @@ export default function Booking() {
                   <span className='text-[11px] text-[#687176] font-semibold'>Trước 12:00</span>
                 </div>
               </div>
-              <h1 className='mt-4 font-bold'>(1x) Superior Double</h1>
-              <p className='text-xs font-semibold text-[#e7090e]'>Được nhiều người chọn!</p>
+              {/* <h1 className='mt-4 font-bold'>(1x) Superior Double</h1>
+              <p className='text-xs font-semibold text-[#e7090e]'>Được nhiều người chọn!</p> */}
               <div className='mt-4 flex gap-2'>
                 <img
                   src='https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/3/377ee1b8105881b249bd015d717ccf4f.svg'
                   alt=''
                 />
-                <p className='text-[#687176] font-medium text-sm'>2 khách</p>
+                <p className='text-[#687176] font-medium text-sm'>{result?.data.result[0].hotel_facilities}</p>
               </div>
-              <div className='mt-4 flex gap-2'>
+              {/* <div className='mt-4 flex gap-2'>
                 <img
                   src='https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/b/bf6a43a380752458f8ff4bcf166ccd42.svg'
                   alt=''
@@ -252,7 +285,7 @@ export default function Booking() {
                   src='https://d1785e74lyxkqq.cloudfront.net/_next/static/v2/b/b1b083b94f10e645e787bfebbda1c111.svg'
                   alt=''
                 />
-              </div>
+              </div> */}
               <div className='mt-4 flex justify-between'>
                 <div>
                   <div className='flex items-center gap-2'>

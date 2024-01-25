@@ -195,6 +195,10 @@ function Location() {
       return getBooking('locations')
     }
   })
+  useEffect(()=>{
+    console.log(data);
+    
+  },[data])
   const { profile, setProfile } = useContext(AppContext)
   const result = useQuery({
     queryKey: ['admin'],
@@ -265,7 +269,7 @@ function Location() {
                   <li className='col-span-1 text-sm text-center font-medium'>{item._id.slice(0, 15)}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{item?.user?.full_name || item.name}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.date_pick)}</li>
-                  <li className='col-span-1 text-sm text-center font-medium'>{item.locations?.price}</li>
+                  <li className='col-span-1 text-sm text-center font-medium'>{item.locations?.price * item.amount_human}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{item.code}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.tour_day)}</li>
                   <li className='col-span-1 text-sm text-center font-medium'>{item.amount_human}</li>
@@ -310,7 +314,7 @@ function Location() {
                 <li className='col-span-1 text-sm text-center font-medium'>{item._id.slice(0, 15)}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{item?.user?.full_name || item.name}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.date_pick)}</li>
-                <li className='col-span-1 text-sm text-center font-medium'>{item.locations?.price}</li>
+                <li className='col-span-1 text-sm text-center font-medium'>{item.locations?.price* item.amount_human}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{item.code}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{formatDate(item.tour_day)}</li>
                 <li className='col-span-1 text-sm text-center font-medium'>{item.amount_human}</li>

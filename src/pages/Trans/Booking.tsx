@@ -7,6 +7,7 @@ import { getTrans } from 'src/apis/transportation.api'
 import HeaderSub from 'src/component/HeaderSub'
 import { AppContext } from 'src/context/app.context'
 import { Start } from '../Hotel/Search'
+import { formatDate } from 'src/utills/date'
 
 export default function Booking() {
   const navigate = useNavigate()
@@ -101,16 +102,23 @@ export default function Booking() {
               </div>
               <div className='mt-4'>
                 <div className='flex flex-col w-1/2'>
-                  <label htmlFor='phone' className='text-[#03121a] text-[14px] font-bold'>
+                  <label htmlFor='locationrs' className='text-[#03121a] text-[14px] font-bold'>
                     Địa điểm vận chuyển
                   </label>
                   <input
                     type='text'
-                    id='phone'
+                    id='locationrs'
                     onChange={(e) => setLocation(e.target.value)}
                     className='outline-none border p-2 rounded-md mt-2 focus:border-2 mb-1 focus:border-blue-400'
                   />
                   <p className='text-[#687176] text-[12px] font-bold'>ví dụ hà nội</p>
+                </div>
+              </div>
+              <div className='mt-4'>
+                <div className='flex flex-col w-1/2'>
+                  <label htmlFor='' className='text-[#03121a] text-[14px] font-bold'>
+                    Ngày vận chuyển: {formatDate(ticket)}
+                  </label>
                 </div>
               </div>
             </div>
@@ -156,15 +164,15 @@ export default function Booking() {
                   />
                 </div>
                 <p className='text-[#0194fa] text-[16px] font-bold'>
-                  Thuế và phí là các khoản được Traveloka chuyển trả cho quản lý. Mọi thắc mắc về thuế và hóa đơn, vui
-                  lòng tham khảo Điều khoản và Điều kiện của Traveloka để được giải đáp
+                  Thuế và phí là các khoản được JourneyJoy chuyển trả cho quản lý. Mọi thắc mắc về thuế và hóa đơn, vui
+                  lòng tham khảo Điều khoản và Điều kiện của JourneyJoy để được giải đáp
                 </p>
               </div>
               <div className='flex justify-between w-full mt-4'>
-                <p className='text-[#03121a] text-[16px] font-semibold'>(1x) Superior Double</p>
-                <div className='flex items-center'>
-                  <p className='text-[#03121a] text-[16px] font-bold'>{location.state.price} VND</p>
-                </div>
+                {/* <p className='text-[#03121a] text-[16px] font-semibold'>(1x) Superior Double</p> */}
+                {/* <div className='flex items-center'> */}
+                  {/* <p className='text-[#03121a] text-[16px] font-bold'>{location.state.price} VND</p> */}
+                {/* </div> */}
               </div>
               <div className='flex justify-between w-full mt-4'>
                 <p className='text-[#03121a] text-[16px] font-semibold'>Thuế và phí</p>
@@ -177,7 +185,7 @@ export default function Booking() {
           <div className='mt-4 grid grid-cols-9 max-sm:mb-8 sm:mb-32 justify-between max-sm:hidden'>
             <p className='col-span-4 text-[#03121a] text-[14px] font-semibold'>
               Khi nhấn vào nút này bạn công nhận mình đã đọc và đồng ý với các Điều khoản & Điều kiện và Chính sách
-              quyền riêng tư của Traveloka
+              quyền riêng tư của JourneyJoy
             </p>
             <p className='col-span-3'></p>
             <div className='col-span-2'>
@@ -218,8 +226,8 @@ export default function Booking() {
             <img src={result?.data.result[0].car_vehicle} alt='' className='w-full h-full' />
           </div>
           <div className='p-4 bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-b-xl'>
-            <h1 className='mt-4 font-bold'>(1x) Superior Double</h1>
-            <p className='text-xs font-semibold text-[#e7090e]'>Được nhiều người chọn!</p>
+            {/* <h1 className='mt-4 font-bold'>(1x) Superior Double</h1> */}
+            {/* <p className='text-xs font-semibold text-[#e7090e]'>Được nhiều người chọn!</p> */}
             <div className='mt-4 flex justify-between'>
               <div>
                 <div className='flex items-center gap-2'>
@@ -248,7 +256,7 @@ export default function Booking() {
                   </svg>
                   <p className='font-bold'>Tổng giá dịch vụ</p>
                 </div>
-                <p className='text-sm font-medium text-[#687176]'>1 phòng, 1 đêm</p>
+                {/* <p className='text-sm font-medium text-[#687176]'>1 phòng, 1 đêm</p> */}
               </div>
               <div>
                 <p className='text-[#ff5e1f] font-bold'>{result?.data.result[0].price} VND</p>
@@ -258,7 +266,7 @@ export default function Booking() {
           <div className='mt-4 grid grid-cols-9 max-sm:mb-8 sm:mb-32 justify-between sm:hidden'>
             <p className='col-span-4 text-[#03121a] text-[14px] font-semibold'>
               Khi nhấn vào nút này bạn công nhận mình đã đọc và đồng ý với các Điều khoản & Điều kiện và Chính sách
-              quyền riêng tư của Traveloka
+              quyền riêng tư của JourneyJoy
             </p>
             <p className='col-span-3'></p>
             <div className='col-span-2'>

@@ -26,6 +26,7 @@ export default function Header() {
     timeOrder: 0,
     timeBack: 0
   })
+  const [numberRoom, setNumberRoom] = useState(0)
   const { setIsAuthenticated, setProfile, profile, isAuthenticated, setTicket } = useContext(AppContext)
   const navigate = useNavigate()
   const searchMutation = useMutation((key: string) => searchHotel(key))
@@ -33,7 +34,7 @@ export default function Header() {
     searchMutation.mutate(keySearch, {
       onSuccess: (data) => {
         setTicket(date)
-        navigate('/hotel/search', { state: data.data.result })
+        navigate('/hotel/search', { state: { data: data.data.result, numberRoom } })
       }
     })
   }
@@ -450,7 +451,13 @@ export default function Header() {
           </li>
         </ul>
         {choose === 'hotel' && (
-          <Hotel date={date} setDate={setDate} handleSearch={handleSearch} setKeySearch={setKeySearch} />
+          <Hotel
+            date={date}
+            setDate={setDate}
+            setNumberRoom={setNumberRoom}
+            handleSearch={handleSearch}
+            setKeySearch={setKeySearch}
+          />
         )}
         {choose === 'plane' && <Plane />}
         {choose === 'transportation' && <Transportation />}

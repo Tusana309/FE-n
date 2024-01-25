@@ -24,21 +24,21 @@ function DanhGia() {
         <h1 className='text-[50px] font-bold'>
           {state?.tranportation_name || state?.hotel_name || state?.car_name || state?.location_name}
         </h1>
-        <div className='flex gap-3'>
+        {/* <div className='flex gap-3'>
           <p className='underline'>602 đánh giá</p>
           <p className='underline'>Số 33/502 Spa & Sức khoẻ ở Hà Nội</p>
           <p>Spa</p>
-        </div>
-        <div className='flex gap-3'>
+        </div> */}
+        {/* <div className='flex gap-3'>
           <p className='text-[#cc0000] font-bold'>Đang đóng cửa</p>
           <p className='font-bold'>09:00 - 22:30</p>
-        </div>
+        </div> */}
         <div className='grid grid-cols-3 items-stretch mt-4 gap-3'>
           <div className='sm:col-span-1 max-sm:col-span-3 shadow-t-mh rounded-lg'>
             <div className='shadow-mh pt-8 px-6 pb-6 rounded-lg'>
               <p className='mb-12 text-2xl font-bold'>Giới thiệu</p>
               <div className='flex gap-2 items-center'>
-                <svg viewBox='0 0 24 24' width='1em' height='1em'>
+                {/* <svg viewBox='0 0 24 24' width='1em' height='1em'>
                   <path
                     fillRule='evenodd'
                     clipRule='evenodd'
@@ -49,8 +49,8 @@ function DanhGia() {
                     clipRule='evenodd'
                     d='M6.323 4.935h-3.55v-1.5h5.05v5.05h-1.5v-3.55zM11.333 13.034v-5.36h1.5v5.457c0 .312-.116.612-.326.842l-2.765 3.033-1.109-1.01 2.7-2.962z'
                   ></path>
-                </svg>
-                <p>Thời lượng: 1-2 giờ</p>
+                </svg> */}
+                <p>{state?.description}</p>
               </div>
               <div className='flex gap-2 items-start'>
                 <svg viewBox='0 0 24 24' width='24' height='24' className='mt-1'>
@@ -79,7 +79,7 @@ function DanhGia() {
           </div>
           <div className='sm:col-span-2 max-sm:col-span-3 rounded-lg overflow-hidden'>
             <img
-              src='https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/17/33/4e/a-corner-of-the-master.jpg?w=1200&h=-1&s=1'
+              src={state?.car_vehicle || state?.hotel_img || state?.location_img || state?.car_img}
               alt=''
               className=''
             />

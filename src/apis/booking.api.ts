@@ -5,7 +5,7 @@ export type BookingBody = {
   car_id?: string
   location_id?: string
   transportation_id?: string
-  seater?: number
+  seater?: string
   location?: string
   name?: string
   tour_day?: number
@@ -14,6 +14,7 @@ export type BookingBody = {
   time_start?: number
   timeBack?: number
   timeOrder?: number
+  numberRoom?: number
 }
 export const getHotelPartner = () => http.get('booking/partner')
 export const getHotelUser = () => http.get('booking')

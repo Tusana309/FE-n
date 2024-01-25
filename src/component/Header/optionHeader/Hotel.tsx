@@ -8,12 +8,14 @@ type Props = {
       timeBack: number
     }>
   >
+
   date: {
     timeOrder: number
     timeBack: number
   }
+  setNumberRoom(value: number): void
 }
-function Hotel({ handleSearch, setKeySearch, setDate, date }: Props) {
+function Hotel({ handleSearch, setKeySearch, setDate, date, setNumberRoom }: Props) {
   function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
     setDate({
       ...date,
@@ -58,11 +60,14 @@ function Hotel({ handleSearch, setKeySearch, setDate, date }: Props) {
           </div>
         </div>
         <div className='w-full overflow-hidden  col-span-2'>
-          <p className='text-[14px] font-semibold'>Khách và Phòng</p>
+          <p className='text-[14px] font-semibold'>Số phòng</p>
           <div className='w-full overflow-hidden mt-4 col-span-1'>
             <input
               type='text'
               placeholder='1 người lớn, 0 Trẻ em, 1 phòng'
+              name='numberRoom'
+              // Thay vì truyền một chuỗi, hãy đảm bảo rằng giá trị là một số.
+              onChange={(e) => setNumberRoom(parseInt(e.target.value, 10))}
               className='text-[#000] px-3 w-full min-h-[40px] border-y-[3px] border-r-[0px] border-l-[3px] border-[#cdd0d180] outline-none'
             />
           </div>

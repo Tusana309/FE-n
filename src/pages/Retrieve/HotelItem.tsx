@@ -15,7 +15,7 @@ function HotelItem({ _, index }: { _: any; index: number }) {
       <div className='flex justify-between'>
         <h1 className='text-[#687176] text-[14px]'>Mã đặt chỗ Traveloka {_._id}</h1>
         <div className='flex items-center gap-2'>
-          <p className='text-[#03121a] font-bold'>{_.hotels?.price} VND</p>
+          <p className='text-[#03121a] font-bold'>{_.hotels?.price * _.numberRoom * (Math.abs(_.timeBack - _.timeOrder) / (24 * 60 * 60 * 1000) + 1)} VND</p>
           <div className='cursor-pointer' onClick={() => handleChat(_.hotels?.user_id)}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -57,6 +57,7 @@ function HotelItem({ _, index }: { _: any; index: number }) {
           <p>
             Mã chuyển khoản: <p className='font-semibold inline'>{_.code}</p>
           </p>
+          <p>Số lượng phòng: {_.numberRoom} phòng</p>
           <p>Thời gian đặt phòng: {formatDate(_.timeOrder)}</p>
           <p>Thời gian trả phòng: {formatDate(_.timeBack)}</p>
           <p>Trạng thái: {formatStatus(_.status)}</p>

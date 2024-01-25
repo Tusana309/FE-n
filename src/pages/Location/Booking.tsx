@@ -21,6 +21,7 @@ export default function Booking() {
     queryKey: ['', location.state.id],
     queryFn: () => getLocationId(location.state.id)
   })
+  const [price, setPrice] = useState(0)
   const { setMessage } = useContext(AppContext)
   function handleChat(id: string) {
     if (id !== profile._id) {
@@ -35,7 +36,7 @@ export default function Booking() {
         {
           onSuccess: (data) => {
             navigate('/pay', {
-              state: { price: location.state.price, code: data.data.result.code, result: result?.data.result }
+              state: { price: price, code: data.data.result.code, result: result?.data.result }
             })
           }
         }
@@ -124,6 +125,7 @@ export default function Booking() {
                     name='amount_human'
                     onChange={(e) => {
                       setData({ ...data, amount_human: Number(e.target.value) })
+                      setPrice(Number(e.target.value) * location.state.price)
                     }}
                     // defaultValue={profile?.email}
                     className='outline-none border p-2 rounded-md mt-2 focus:border-2 mb-1 focus:border-blue-400'
@@ -163,7 +165,7 @@ export default function Booking() {
                       strokeLinejoin='round'
                     ></path>
                   </svg>
-                  <p className='text-[#03121a] text-[16px] font-bold'>{location.state.price} VND</p>
+                  <p className='text-[#03121a] text-[16px] font-bold'>{price} VND</p>
                 </div>
               </div>
               <div className='mt-4 flex gap-2 '>
@@ -178,12 +180,12 @@ export default function Booking() {
                   lòng tham khảo Điều khoản và Điều kiện của Traveloka để được giải đáp
                 </p>
               </div>
-              <div className='flex justify-between w-full mt-4'>
+              {/* <div className='flex justify-between w-full mt-4'>
                 <p className='text-[#03121a] text-[16px] font-semibold'>(1x) Superior Double</p>
                 <div className='flex items-center'>
                   <p className='text-[#03121a] text-[16px] font-bold'>{location.state.price} VND</p>
                 </div>
-              </div>
+              </div> */}
               <div className='flex justify-between w-full mt-4'>
                 <p className='text-[#03121a] text-[16px] font-semibold'>Thuế và phí</p>
                 <div className='flex items-center'>
@@ -236,8 +238,8 @@ export default function Booking() {
             <img src={result?.data.result[0].location_img} alt='' className='w-full h-full' />
           </div>
           <div className='p-4 bg-white shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] rounded-b-xl'>
-            <h1 className='mt-4 font-bold'>(1x) Superior Double</h1>
-            <p className='text-xs font-semibold text-[#e7090e]'>Được nhiều người chọn!</p>
+            {/* <h1 className='mt-4 font-bold'>(1x) Superior Double</h1> */}
+            {/* <p className='text-xs font-semibold text-[#e7090e]'>Được nhiều người chọn!</p>1 */}
             <div className='mt-4 flex justify-between'>
               <div>
                 <div className='flex items-center gap-2'>
@@ -264,12 +266,12 @@ export default function Booking() {
                       strokeLinejoin='round'
                     ></path>
                   </svg>
-                  <p className='font-bold'>Tổng giá vé</p>
+                  <p className='font-bold'>Giá vé</p>
                 </div>
-                <p className='text-sm font-medium text-[#687176]'>1 phòng, 1 đêm</p>
+                {/* <p className='text-sm font-medium text-[#687176]'>1 phòng, 1 đêm</p> */}
               </div>
               <div>
-                <p className='text-[#ff5e1f] font-bold'>{result?.data.result[0].price} VND</p>
+                <p className='text-[#ff5e1f] font-bold'>{result?.data.result[0].price} VND/ 1 vé</p>
               </div>
             </div>
           </div>
